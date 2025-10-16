@@ -1,5 +1,4 @@
 ﻿name: set09803-world-population
-
 services:
   mysql:
     image: mysql:8.4
@@ -18,7 +17,7 @@ services:
       - db-data:/var/lib/mysql
       - ./world-db:/docker-entrypoint-initdb.d:ro
     healthcheck:
-      test: ["CMD-SHELL","mysqladmin ping -h 127.0.0.1 -p${MYSQL_ROOT_PASSWORD}"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-p${MYSQL_ROOT_PASSWORD}"]
       interval: 10s
       timeout: 5s
       retries: 10
