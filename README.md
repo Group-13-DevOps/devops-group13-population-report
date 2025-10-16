@@ -251,7 +251,6 @@ Both diagrams follow the **Software Engineering Methods** design standards and a
 
 - Releases — GitHub Releases tagged from master
 
----
 
 ---
 
