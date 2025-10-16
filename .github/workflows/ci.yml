@@ -11,16 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - name: Setup JDK (Temurin 24)
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: "24"
           cache: maven
-
       - name: Build & test
-        run: mvn -B -DskipITs test
+        run: ./mvnw -B -q -DskipITs test
 
   check-dockerfile:
     runs-on: ubuntu-latest
@@ -37,15 +35,13 @@ jobs:
           fi
 
   docker-build:
-    needs: [build-test, check-dockerfile]
+    needs: [ build-test, check-dockerfile ]
     if: needs.check-dockerfile.outputs.present == 'true' && github.ref != 'refs/heads/develop'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-
       - name: Build image (no push)
         uses: docker/build-push-action@v6
         with:
