@@ -1,4 +1,5 @@
 ﻿[![CI](https://github.com/Group-13-DevOps/devops-group13-population-report/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/Group-13-DevOps/devops-group13-population-report/actions/workflows/ci.yml)
+[![CI](https://github.com/Group-13-DevOps/devops-group13-population-report/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/Group-13-DevOps/devops-group13-population-report/actions/workflows/ci.yml)
 # Population Reporting System — Group 13
 
 SET09803 DevOps coursework project. Java + Maven + Docker + GitHub Actions.
@@ -42,6 +43,7 @@ git pull --rebase
 
 git switch -c release/0.1.0
 git push -u origin release/0.1.0
+
 
 
 
