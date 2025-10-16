@@ -1,25 +1,24 @@
 ﻿name: set09803-world-population
-version: '3.9'
 
 services:
   mysql:
     image: mysql:8.4
     container_name: world-mysql
     command:
-      - '--character-set-server=utf8mb4'
-      - '--collation-server=utf8mb4_unicode_ci'
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
     environment:
-      MYSQL_DATABASE: \
-      MYSQL_USER: \
-      MYSQL_PASSWORD: \
-      MYSQL_ROOT_PASSWORD: \
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
-      - '\:3306'
+      - "${HOST_MYSQL_PORT:-3306}:3306"
     volumes:
       - db-data:/var/lib/mysql
       - ./world-db:/docker-entrypoint-initdb.d:ro
     healthcheck:
-      test: ['CMD','mysqladmin','ping','-h','127.0.0.1','-p\']
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -p${MYSQL_ROOT_PASSWORD}"]
       interval: 10s
       timeout: 5s
       retries: 10
@@ -35,12 +34,12 @@ services:
     environment:
       DB_HOST: mysql
       DB_PORT: 3306
-      DB_NAME: \
-      DB_USER: \
-      DB_PASS: \
-      APP_PORT: \
+      DB_NAME: ${MYSQL_DATABASE}
+      DB_USER: ${MYSQL_USER}
+      DB_PASS: ${MYSQL_PASSWORD}
+      APP_PORT: ${APP_PORT}
     ports:
-      - '\:8080'
+      - "${APP_PORT:-8080}:8080"
 
 volumes:
   db-data:
