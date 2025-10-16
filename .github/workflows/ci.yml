@@ -20,7 +20,6 @@ jobs:
         run: mvn -B -DskipITs test
 
   docker-build:
-    # Only run if a Dockerfile is present on this branch
     if: ${{ hashFiles('Dockerfile') != '' }}
     name: Docker build (no push)
     runs-on: ubuntu-latest
