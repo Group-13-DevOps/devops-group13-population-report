@@ -1,1 +1,63 @@
-﻿
+﻿name: CI
+
+on:
+  push:
+    branches: [ develop, feature/**, main, master ]
+  pull_request:
+    branches: [ develop, main, master ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup JDK (Temurin 24)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "24"
+
+      - name: Cache Maven repo
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2-
+
+      - name: Build & Test with Maven Wrapper
+        run: ./mvnw -B -DskipITs test package
+        shell: bash
+
+  check-dockerfile:
+    runs-on: ubuntu-latest
+    outputs:
+      present: ${{ steps.chk.outputs.present }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: chk
+        shell: bash
+        run: |
+          if [ -f Dockerfile ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  docker-build:
+    needs: [build-test, check-dockerfile]
+    if: needs.check-dockerfile.outputs.present == 'true' && github.ref != 'refs/heads/develop'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build image (no push)
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          push: false
+          tags: world-pop-report:ci-${{ github.sha }}
