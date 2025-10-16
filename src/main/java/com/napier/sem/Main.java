@@ -2,6 +2,6 @@
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("World Population Report app - CI sanity check.");
+        System.out.println("World Population Report – CI smoke run");
     }
 }
