@@ -2,10 +2,15 @@
 
 on:
   push:
-    branches: [ develop, feature/**, main, master ]
+    branches:
+      - develop
+      - master
+      - feature/**
+      - release/**
   pull_request:
-    branches: [ develop, main, master ]
-
+    branches:
+      - develop
+      - master
 jobs:
   build-test:
     runs-on: ubuntu-latest
@@ -61,3 +66,4 @@ jobs:
           file: ./Dockerfile
           push: false
           tags: world-pop-report:ci-${{ github.sha }}
+
