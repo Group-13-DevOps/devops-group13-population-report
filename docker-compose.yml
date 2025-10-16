@@ -1,6 +1,4 @@
-﻿name: set09803-world-population
-
-services:
+﻿services:
   mysql:
     image: mysql:8.4
     container_name: world-mysql
