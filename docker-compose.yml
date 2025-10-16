@@ -1,4 +1,4 @@
-﻿name: set09803-world-population
+version: "3.9"
 services:
   mysql:
     image: mysql:8.4
@@ -12,7 +12,7 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
-      - "${HOST_MYSQL_PORT:-3306}:3306"
+      - "${HOST_MYSQL_PORT}:3306"
     volumes:
       - db-data:/var/lib/mysql
       - ./world-db:/docker-entrypoint-initdb.d:ro
@@ -38,7 +38,7 @@ services:
       DB_PASS: ${MYSQL_PASSWORD}
       APP_PORT: ${APP_PORT}
     ports:
-      - "${APP_PORT:-8080}:8080"
+      - "${APP_PORT}:8080"
 
 volumes:
   db-data:
