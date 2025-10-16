@@ -1,5 +1,11 @@
-﻿target/
+﻿# IDE / OS
 .idea/
 *.iml
-out/
 .DS_Store
+
+# Build output
+target/
+out/
+
+# Maven extras
+dependency-reduced-pom.xml
