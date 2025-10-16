@@ -1,6 +1,5 @@
 ﻿target/
 .idea/
 *.iml
-*.log
 out/
 .DS_Store
