@@ -1,6 +1,4 @@
-﻿# syntax=docker/dockerfile:1
-
-# ---- Build stage (JDK 24 + Maven Wrapper) ----
+﻿
 FROM eclipse-temurin:24-jdk AS build
 WORKDIR /app
 
