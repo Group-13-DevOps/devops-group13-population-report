@@ -19,3 +19,11 @@ out/
 !world-db/
 !world-db/**
 !world-db/world.sql
+
+# local env, do NOT commit
+.env
+
+# keep DB seed in repo
+!world-db/
+!world-db/**
+!world-db/world.sql
