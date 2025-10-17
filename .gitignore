@@ -40,3 +40,11 @@ out/
 
 # local env (do not commit)
 .env
+
+# keep DB seed
+!world-db/
+!world-db/**
+!world-db/world.sql
+
+# local env (do NOT commit)
+.env
