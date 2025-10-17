@@ -1,0 +1,9 @@
+blank_issues_enabled: false
+contact_links:
+  - name: ?? Project Board
+    url: https://github.com/Group-13-DevOps/devops-group13-population-report/projects
+    about: Plan sprints and track R01–R32 work here.
+
+  - name: ?? Coursework Requirements (README section)
+    url: https://github.com/Group-13-DevOps/devops-group13-population-report#-functional-requirements-assessment-specification
+    about: The assessed specification (R01–R32) we implement and evidence.
