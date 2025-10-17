@@ -10,3 +10,6 @@ target
 !mvnw
 !.mvn/
 !.mvn/**
+!mvnw
+!.mvn/
+!.mvn/**
