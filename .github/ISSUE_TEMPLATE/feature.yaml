@@ -33,13 +33,13 @@ body:
       label: Definition of Done
       options:
         - label: SQL verified against MySQL dataset
-        - label: Feature branch created from develop and PR opened
-        - label: Unit/Integration tests added; coverage meets target
-        - label: CI build green & Codecov updated
+        - label: Feature branch from develop + PR opened
+        - label: Unit/Integration tests; coverage target met
+        - label: CI green & Codecov updated
         - label: Docker Compose up works locally
         - label: README evidence/screenshot added
   - type: textarea
     id: tasks
     attributes:
       label: Sub-tasks
-      placeholder: "- Write repository method\n- Write service & CLI output\n- Add tests\n- Update README"
+      placeholder: "- Repository method\n- Service & CLI output\n- Tests\n- README update"
