@@ -27,3 +27,8 @@ out/
 !world-db/
 !world-db/**
 !world-db/world.sql
+
+# keep DB seed files in Git
+!world-db/
+!world-db/**
+!world-db/world.sql
