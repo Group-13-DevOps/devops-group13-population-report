@@ -7,3 +7,10 @@ out/
 
 # keep DB seed files
 !world-db/**
+
+# local secrets
+.env
+
+# local secrets (do not commit)
+.env
+
