@@ -1,0 +1,45 @@
+name: Feature Request (Requirement)
+description: Track implementation of a coursework requirement (R01–R32)
+title: "R## — <short title>"
+labels: ["type:feature"]
+body:
+  - type: input
+    id: req
+    attributes:
+      label: Requirement ID
+      placeholder: "R07"
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      placeholder: "All cities in the world ordered by population (desc)."
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria (GIVEN/WHEN/THEN)
+      placeholder: |
+        GIVEN the world DB is seeded
+        WHEN I run the report for cities in the world
+        THEN results are ordered desc by population and match sample queries
+    validations:
+      required: true
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: Definition of Done
+      options:
+        - label: SQL verified against MySQL dataset
+        - label: Feature branch created from develop and PR opened
+        - label: Unit/Integration tests added; coverage meets target
+        - label: CI build green & Codecov updated
+        - label: Docker Compose up works locally
+        - label: README evidence/screenshot added
+  - type: textarea
+    id: tasks
+    attributes:
+      label: Sub-tasks
+      placeholder: "- Write repository method\n- Write service & CLI output\n- Add tests\n- Update README"
