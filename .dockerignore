@@ -6,3 +6,7 @@
 target
 *.iml
 .DS_Store
+# Keep Maven wrapper in Docker context
+!mvnw
+!.mvn/
+!.mvn/**

@@ -1,13 +1,15 @@
-﻿
+﻿# syntax=docker/dockerfile:1
+
+# ---- Build stage (JDK 24 + Maven Wrapper) ----
 FROM eclipse-temurin:24-jdk AS build
 WORKDIR /app
 
-# Maven Wrapper files
+# Copy Maven Wrapper and fix Windows line endings, then make executable
 COPY .mvn/ .mvn/
 COPY mvnw .
-RUN chmod +x mvnw
+RUN sed -i 's/\r$//' mvnw && chmod +x mvnw
 
-# Pre-fetch deps, then compile/package
+# Prefetch deps for offline build, then compile/package
 COPY pom.xml .
 RUN ./mvnw -q -DskipTests dependency:go-offline
 
@@ -18,9 +20,8 @@ RUN ./mvnw -q -DskipTests package
 FROM eclipse-temurin:24-jre
 WORKDIR /app
 
-# Copy the fat jar built by the assembly plugin
-# (your build produces *-jar-with-dependencies.jar)
-COPY --from=build /app/target/*-with-dependencies.jar /app/app.jar
+# Copy the built jar (fat jar if present, otherwise the only jar)
+COPY --from=build /app/target/*.jar /app/app.jar
 
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","/app/app.jar"]
